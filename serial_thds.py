@@ -17,21 +17,7 @@ class ThreadManager:
             if self.thread_queue:
                 th = self.thread_queue[0]
                 th.start()
-                r = 0
-                while th.isAlive():
-                    time.sleep(0.25)
-                    if r == 0:
-                        print "Running"
-                        r =1
-                    elif r == 1:
-                        print "Running."
-                        r = 2
-                    elif r == 2:
-                        print "Running.."
-                        r = 3
-                    elif r == 3:
-                        print "Running..."
-                        r = 0
+                th.join()
                 self.thread_queue.pop(0)
             else:
                 pass
